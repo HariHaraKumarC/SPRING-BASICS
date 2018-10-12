@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="addressBean" class="hari.edu.spring.pojo.Address">
+        <property name="streetName" value="15-1-7 VOC STREET"/>
+        <property name="country" value="INDIA"/>
+        <property name="zipCode" value="625513"/>
+    </bean>
+
+    <bean id="employeeBean" class="hari.edu.spring.pojo.Employee">
+        <constructor-arg index="0" value="1"/>
+        <constructor-arg index="1" value="Hari"/>
+        <constructor-arg index="2" ref="addressBean"/>
+    </bean>
+
+    <bean id="walletBean" class="hari.edu.spring.pojo.Wallet">
+        <constructor-arg index="0" value="3"/>
+        <constructor-arg>
+            <set>
+                <value>Resident Card</value>
+                <value>Debit Card</value>
+                <value>Credit Card</value>
+            </set>
+        </constructor-arg>
+    </bean>
+
+    <bean id="trallyBean" class="hari.edu.spring.pojo.Trally">
+        <constructor-arg index="0" value="20"/>
+        <constructor-arg index="1" value="30"/>
+        <constructor-arg>
+            <set>
+                <value>Apple</value>
+                <value>Apple</value>
+                <value>Orange</value>
+                <value>Pomegranate</value>
+            </set>
+        </constructor-arg>
+    </bean>
+
+</beans>
