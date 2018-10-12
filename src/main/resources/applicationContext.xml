@@ -3,18 +3,21 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- Setter based DI -->
     <bean id="addressBean" class="hari.edu.spring.pojo.Address">
         <property name="streetName" value="15-1-7 VOC STREET"/>
         <property name="country" value="INDIA"/>
         <property name="zipCode" value="625513"/>
     </bean>
 
+    <!-- Constructor based DI -->
     <bean id="employeeBean" class="hari.edu.spring.pojo.Employee">
         <constructor-arg index="0" value="1"/>
         <constructor-arg index="1" value="Hari"/>
         <constructor-arg index="2" ref="addressBean"/>
     </bean>
 
+    <!-- Constructor based DI (set) -->
     <bean id="walletBean" class="hari.edu.spring.pojo.Wallet">
         <constructor-arg index="0" value="3"/>
         <constructor-arg>
@@ -26,17 +29,40 @@
         </constructor-arg>
     </bean>
 
+    <!-- Constructor based DI (list) -->
     <bean id="trallyBean" class="hari.edu.spring.pojo.Trally">
         <constructor-arg index="0" value="20"/>
         <constructor-arg index="1" value="30"/>
         <constructor-arg>
-            <set>
+            <list>
                 <value>Apple</value>
                 <value>Apple</value>
                 <value>Orange</value>
                 <value>Pomegranate</value>
-            </set>
+            </list>
         </constructor-arg>
+    </bean>
+
+    <!-- Setter based DI -->
+    <bean id="residentCardBean" class="hari.edu.spring.pojo.ResidentCard">
+        <property name="residentCardNumber" value="123456789"/>
+    </bean>
+
+    <!-- Setter based DI -->
+    <bean id="residentBean" class="hari.edu.spring.pojo.Resident">
+        <property name="name" value="HariHaraKumar"/>
+        <property name="mobileNumber" value="465254789"/>
+    </bean>
+
+    <!-- Setter based DI (Map) -->
+    <bean id="communeBean" class="hari.edu.spring.pojo.Commune">
+        <property name="communeName" value="Etterbeek Commune"/>
+        <property name="communeAddress" value="15 Rue de la Franc, 1040 Etterbeek"/>
+        <property name="residentDetails">
+            <map>
+                <entry key-ref="residentCardBean" value-ref="residentBean"/>
+            </map>
+        </property>
     </bean>
 
 </beans>

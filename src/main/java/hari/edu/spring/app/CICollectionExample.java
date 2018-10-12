@@ -1,10 +1,11 @@
 package hari.edu.spring.app;
 
-import hari.edu.spring.pojo.Trally;
-import hari.edu.spring.pojo.Wallet;
+import hari.edu.spring.pojo.*;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Map;
 
 public class CICollectionExample {
     public static final String SPRING_APPLICATION_CONTEXT_FILE="applicationContext.xml";
@@ -23,5 +24,17 @@ public class CICollectionExample {
         logger.debug("Trally price > "+trally.getPrice());
         logger.debug("Trally maxKg > "+trally.getMaxKg());
         logger.debug("Trally Fruits (List) > "+trally.getFruits().toString());
+        logger.debug("Collection DI Example (Map) : Commune Info");
+        Commune commune=(Commune)applicationContext.getBean("communeBean");
+        logger.debug("Printing the Commune details...");
+        logger.debug("Commune Name > "+commune.getCommuneName());
+        logger.debug("Commune Address > "+commune.getCommuneAddress());
+        logger.debug("Printing the Resident Cards details of the Commune...");
+        //Normal way of printing Map
+        /*for(Map.Entry <ResidentCard, Resident> mapEntry: commune.getResidentDetails().entrySet()){
+            logger.debug("Resident Card Number : "+mapEntry.getKey().getResidentCardNumber()+" ; "+mapEntry.getValue());
+        }*/
+        //Printing Map details using Java 8
+        commune.getResidentDetails().forEach(((residentCard, resident) -> logger.debug("Resident Card Number : "+residentCard.getResidentCardNumber()+" ; "+resident)));
     }
 }
