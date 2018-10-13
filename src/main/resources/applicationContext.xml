@@ -65,4 +65,45 @@
         </property>
     </bean>
 
+    <!-- Autowiring  by Name-->
+    <!--<bean id= "books" class="hari.edu.spring.pojo.Book">
+        <property name="name" value="Thiruvasagam"/>
+    </bean>
+
+    <bean id="authorBean" class="hari.edu.spring.pojo.Author" autowire="byName">
+        <property name="name" value="Manivasakar"/>
+    </bean>-->
+
+    <!-- Autowiring  by Type-->
+    <!--<bean id= "bookBean" class="hari.edu.spring.pojo.Book">
+        <property name="name" value="Thiruvasagam"/>
+    </bean>
+
+    <bean id="authorBean" class="hari.edu.spring.pojo.Author" autowire="byType">
+        <property name="name" value="Manivasakar"/>
+    </bean>-->
+
+    <!-- Autowiring  Constructor-->
+    <!--<bean id= "bookBean" class="hari.edu.spring.pojo.Book">
+        <property name="name" value="Thiruvasagam"/>
+    </bean>
+
+    <bean id="authorBean" class="hari.edu.spring.pojo.Author" autowire="constructor">
+        <property name="name" value="Manivasakar"/>
+    </bean>-->
+
+    <!-- Autowiring  No-->
+    <bean id= "bookBean" class="hari.edu.spring.pojo.Book">
+        <property name="name" value="Thiruvasagam"/>
+    </bean>
+
+    <bean id="authorBean" class="hari.edu.spring.pojo.Author" autowire="no">
+        <constructor-arg index="0" value="Manivasakar"/>
+        <constructor-arg index="1">
+            <list>
+                <ref bean="bookBean"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
 </beans>
