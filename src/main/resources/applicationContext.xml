@@ -106,4 +106,27 @@
         </constructor-arg>
     </bean>
 
+    <!-- Factory Method  DI Example Type 1-->
+    <bean id="mobileBean1" class="hari.edu.spring.pojo.Mobile" factory-method="getMobile">
+        <property name="brand" value="APPLE"/>
+        <property name="model" value="IPHONE 6S"/>
+    </bean>
+
+    <bean id="mobileBean2" class="hari.edu.spring.pojo.Mobile" factory-method="getMobile">
+        <property name="brand" value="LENOVA"/>
+        <property name="model" value="VIBE"/>
+    </bean> <!-- MobileBean1 property will be override by MobileBean2 because of singleton nature -->
+
+    <!-- Factory Method  DI Example Type 2 (Static factory method returning instance of another class) -->
+    <bean id="staticPrintFactoryBean" class="hari.edu.spring.pojo.StaticPrinterFactory" factory-method="getPrinter">
+        <constructor-arg index="0" value="Print Message 1"/>
+    </bean>
+
+    <!-- Factory Method  DI Example Type 3 (Non Static factory method returning instance of another class) -->
+    <bean id="nonStaticPrintFactoryBean" class="hari.edu.spring.pojo.NonStaticPrinterFactory"/>
+
+    <bean id="printerBean" class="hari.edu.spring.pojo.NonStaticPrinterFactory" factory-bean="nonStaticPrintFactoryBean" factory-method="getPrinter">
+        <constructor-arg index="0" value="Print Message 2"/>
+    </bean>
+
 </beans>
