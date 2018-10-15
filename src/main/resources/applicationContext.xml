@@ -129,4 +129,78 @@
         <constructor-arg index="0" value="Print Message 2"/>
     </bean>
 
+    <!-- Spring AOP Concepts without any Advise -->
+    <bean id="customerBean1" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Hari"/>
+        <constructor-arg index="1" value="29"/>
+    </bean>
+
+    <!-- Spring AOP Concepts (Before Advise) -->
+    <bean id="customerBean2" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Usha"/>
+        <constructor-arg index="1" value="24"/>
+    </bean>
+
+    <bean id="aopBeforeAdvice1" class="hari.edu.spring.aop.AOPBeforeAdvice"/>
+
+    <bean id="customerProxyBean1" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="customerBean2"/>
+        <property name="interceptorNames">
+            <list>
+                <value>aopBeforeAdvice1</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Spring AOP Concepts (After Advise) -->
+    <bean id="customerBean3" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Raja"/>
+        <constructor-arg index="1" value="23"/>
+    </bean>
+
+    <bean id="aopAfterAdvice1" class="hari.edu.spring.aop.AOPAfterAdvice"/>
+
+    <bean id="customerProxyBean2" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="customerBean3"/>
+        <property name="interceptorNames">
+            <list>
+                <value>aopAfterAdvice1</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Spring AOP Concepts (After Throw Advise) -->
+    <bean id="customerBean4" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Abi"/>
+        <constructor-arg index="1" value="15"/>
+    </bean>
+
+    <bean id="aopAfterThrowAdvice1" class="hari.edu.spring.aop.AOPAfterThrowAdvice"/>
+
+    <bean id="customerProxyBean3" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="customerBean4"/>
+        <property name="interceptorNames">
+            <list>
+                <value>aopAfterThrowAdvice1</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Spring AOP Concepts (Around Advise) -->
+    <bean id="customerBean5" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Sanjay"/>
+        <constructor-arg index="1" value="19"/>
+    </bean>
+
+    <bean id="aopAroundAdvice1" class="hari.edu.spring.aop.AOPAroundAdvice"/>
+
+    <bean id="customerProxyBean4" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="customerBean5"/>
+        <property name="interceptorNames">
+            <list>
+                <value>aopAroundAdvice1</value>
+            </list>
+        </property>
+    </bean>
+
 </beans>
