@@ -203,4 +203,50 @@
         </property>
     </bean>
 
+    <!-- Spring AOp Pointcut Example -->
+
+    <bean id="customerBean6" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Venkat"/>
+        <constructor-arg index="1" value="31"/>
+    </bean>
+
+    <bean id="aopBeforeAdvice2" class="hari.edu.spring.aop.AOPBeforeAdvice"/>
+
+    <!-- Pointcut -->
+    <bean id="customerPointcut1" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="checkAge"/>
+    </bean>
+
+    <!-- Defaullt Pointcut Advisor -->
+    <!--<bean id="customerAdvisor1" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="customerPointcut1"/>
+        <property name="advice" ref="aopBeforeAdvice2"/>
+    </bean>-->
+
+    <!--&lt;!&ndash; Name Match Pointcut Advisor &ndash;&gt;
+    <bean id="customerAdvisor1" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="mappedName" value="checkAge"/>
+        <property name="advice" ref="aopBeforeAdvice2"/>
+    </bean>-->
+
+    <!-- Regex Match Pointcut Advisor -->
+    <bean id="customerAdvisor1" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="patterns">
+            <list>
+                <value>.*age.*</value>
+            </list>
+        </property>
+        <property name="advice" ref="aopBeforeAdvice2"/>
+    </bean>
+
+    <!-- Proxy -->
+    <bean id="customerProxyBean5" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="customerBean6"/>
+        <property name="interceptorNames">
+            <list>
+                <value>customerAdvisor1</value>
+            </list>
+        </property>
+    </bean>
+
 </beans>
