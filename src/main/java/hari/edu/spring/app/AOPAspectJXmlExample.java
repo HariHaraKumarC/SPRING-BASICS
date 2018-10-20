@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AOPAspectJXmlExample {
 
-    public static final String SPRING_APPLICATION_CONTEXT_FILE="springAspect4jAppContext.xml";
+    public static final String SPRING_APPLICATION_CONTEXT_FILE= "springAspectjAppContext.xml";
     private static final Logger logger=Logger.getLogger(AOPAspectJXmlExample.class);
 
     public static void main(String[] args) {
