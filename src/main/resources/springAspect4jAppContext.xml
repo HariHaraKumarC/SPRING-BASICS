@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <!-- Spring AOP Aspectj XML Before -->
+    <bean id="customerBean7" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Roopamaa"/>
+        <constructor-arg index="1" value="24"/>
+    </bean>
+
+    <!-- aspect -->
+    <bean id="aopBeforeAdvice3" class="hari.edu.spring.aop.AOPAspectJBeforeAdvice"/>
+
+    <!--aop config -->
+    <aop:config>
+        <aop:aspect id="aspectbefore1" ref="aopBeforeAdvice3">
+            <aop:pointcut id="pointcutbefore1" expression="execution(* hari.edu.spring.pojo.Customer.checkAge(..))"/>
+            <aop:before pointcut-ref="pointcutbefore1" method="logBefore"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- Spring AOP Aspectj XML After -->
+
+    <bean id="customerBean8" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Luc"/>
+        <constructor-arg index="1" value="59"/>
+    </bean>
+
+    <!-- aspect -->
+    <bean id="aopAfterAdvice2" class="hari.edu.spring.aop.AOPAspectJAfterAdvice"/>
+
+    <!--aop config -->
+    <aop:config>
+        <aop:aspect id="aspectAfter1" ref="aopAfterAdvice2">
+            <aop:pointcut id="pointcutAfter1" expression="execution(* hari.edu.spring.pojo.Customer.checkAge(..))"/>
+            <aop:after pointcut-ref="pointcutAfter1" method="logAfter"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- Spring AOP Aspectj XML After Returning -->
+
+    <bean id="customerBean9" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Chandrabose"/>
+        <constructor-arg index="1" value="61"/>
+    </bean>
+
+    <!-- aspect -->
+    <bean id="aopAfterReturnAdvice1" class="hari.edu.spring.aop.AOPAspectJAfterReturningAdvice"/>
+
+    <!--aop config -->
+    <aop:config>
+        <aop:aspect id="aspectAfterReturn1" ref="aopAfterReturnAdvice1">
+            <aop:pointcut id="pointcutAfterReturn1" expression="execution(* hari.edu.spring.pojo.Customer.getAge(..))"/>
+            <aop:after-returning pointcut-ref="pointcutAfterReturn1" method="logAfterReturning" returning="result"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- Spring AOP Aspectj XML After Throwing Exception -->
+
+    <bean id="customerBean10" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Sanchai Small"/>
+        <constructor-arg index="1" value="2"/>
+    </bean>
+
+    <!-- aspect -->
+    <bean id="aopAfterThrowAdvise1" class="hari.edu.spring.aop.AOPAspectJAfterThrowingAdvice"/>
+
+    <!--aop config -->
+    <aop:config>
+        <aop:aspect id="aspectAfterThrow1" ref="aopAfterThrowAdvise1">
+            <aop:pointcut id="pointcutAfterThrow1" expression="execution(* hari.edu.spring.pojo.Customer.checkAge(..))"/>
+            <aop:after-throwing pointcut-ref="pointcutAfterThrow1" method="logAfterThrowing" throwing="error"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- Spring AOP Aspectj XML Around -->
+    <bean id="customerBean11" class="hari.edu.spring.pojo.Customer">
+        <constructor-arg index="0" value="Indhumathi"/>
+        <constructor-arg index="1" value="30"/>
+    </bean>
+
+    <!-- aspect -->
+    <bean id="aopAroundAdvise1" class="hari.edu.spring.aop.AOPAspectJAroundAdvice"/>
+
+    <!--aop config -->
+    <aop:config>
+        <aop:aspect id="aspectAround1" ref="aopAroundAdvise1">
+            <aop:pointcut id="pointcutAround1" expression="execution(* hari.edu.spring.pojo.Customer.setAge(..))"/>
+            <aop:around pointcut-ref="pointcutAround1" method="logAround"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
