@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="admin"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="bookDao" class="hari.edu.spring.jdbc.BookDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="bookPreparedStatementDao" class="hari.edu.spring.jdbc.BookPreparedStatementDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="book4" class="hari.edu.spring.pojo.Book">
+        <property name="id" value="4"/>
+        <property name="authorId" value="1"/>
+        <property name="languageId" value="1"/>
+        <property name="name" value="Kadal Rani"/>
+    </bean>
+
+    <bean id="book5" class="hari.edu.spring.pojo.Book">
+        <property name="id" value="5"/>
+        <property name="authorId" value="2"/>
+        <property name="languageId" value="1"/>
+        <property name="name" value="Sivakamiyin Sabatham"/>
+    </bean>
+
+</beans>
